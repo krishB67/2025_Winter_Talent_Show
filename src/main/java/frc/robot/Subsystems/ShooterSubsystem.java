@@ -23,13 +23,12 @@ public class ShooterSubsystem extends SubsystemBase {
     private final SparkMaxConfig shooterConfig = new SparkMaxConfig();
     public final SparkMax shooterMotor = new SparkMax(Constants.ShooterConstants.SHOOTER_MOTOR,MotorType.kBrushless);
     public final SparkClosedLoopController shooterController = shooterMotor.getClosedLoopController();
-    double kP = Constants.ShooterConstants.kP;
-    double kI = Constants.ShooterConstants.kI;
-    double kD = Constants.ShooterConstants.kD;
+    private final double kP = Constants.ShooterConstants.KP;
+    private final double kI = Constants.ShooterConstants.KI;
+    private final double kD = Constants.ShooterConstants.KD;
     public ShooterSubsystem(){
-        shooterConfig.absoluteEncoder.zeroOffset((Constants.ShooterConstants.shooterMotorEncoderOffset));
         shooterConfig.idleMode(IdleMode.kBrake);
-        shooterConfig.closedLoop.feedbackSensor(FeedbackSensor.kAbsoluteEncoder).p(Constants.ShooterConstants.kP).i(Constants.ShooterConstants.kI).d(Constants.ShooterConstants.kD).outputRange(-1, 1);
+        shooterConfig.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).p(Constants.ShooterConstants.KP).i(Constants.ShooterConstants.KI).d(Constants.ShooterConstants.KD).outputRange(-1, 1);
         shooterMotor.configure(shooterConfig, ResetMode.kResetSafeParameters, PersistMode.kNoPersistParameters);
     }
      public void setSpeed(double speed) {
