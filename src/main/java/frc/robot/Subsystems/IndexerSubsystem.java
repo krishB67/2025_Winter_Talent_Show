@@ -12,7 +12,7 @@ public class IndexerSubsystem extends SubsystemBase{
     private double currSpeed = 0;
     private DigitalInput m_proximitySensor = new DigitalInput(Constants.IndexerConstants.INDEX_PROXIMITY_PORT);
     public void robotInit() {
-        DigitalInput m_proximitySensor = new DigitalInput(0); 
+        DigitalInput m_proximitySensor = new DigitalInput(Constants.IndexerConstants.PROXIMITY_CHANNEL); 
     }
     public boolean getProximity(){
         return m_proximitySensor.get();
